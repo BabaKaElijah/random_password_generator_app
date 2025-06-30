@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Password Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Generate a <br><span>Random Password</span></h1>
+    <div class="display">
+      <input type="text" id="password" placeholder="Password">
+      <img src="images/copy.png" id="copy">
+      <span id="copy-msg" style="margin-left: 10px; color: green; display: none;">Copied!</span>
+    </div>
+    <button id="generate"><img src="images/generate.png"> Generate Password</button>
+  </div>
+  <script>
+    const passwordBox = document.getElementById('password');
+    const length = 12;
+
+    const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowerCase = 'abcdefghijklmnoprstuvwxyz';
+    const number = '0123456789';
+    const symbol = '@#$%^&*()_+|}{[]></-=';
+
+    function generateRanPassword() {
+      const allChars = upperCase + lowerCase + number + symbol;
+      let password = '';
+      password += upperCase[Math.floor(Math.random() * upperCase.length)];
+      password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+      password += number[Math.floor(Math.random() * number.length)];
+      password += symbol[Math.floor(Math.random() * symbol.length)];
+
+      // Fill the rest of the password length
+      while (password.length < length) {
+        password += allChars[Math.floor(Math.random() * allChars.length)];
+      }
+
+      // Shuffle the password (optional but recommended)
+      password = password.split('').sort(() => Math.random() - 0.5).join('');
+
+      passwordBox.value = password; // Show the password in the input field
+    }
+
+    document.getElementById('generate').addEventListener('click', generateRanPassword);
+
+    document.getElementById('copy').addEventListener('click', () => {
+      const password = document.getElementById('password');
+      const msg = document.getElementById('copy-msg');
+      password.select(); // select the text
+      password.setSelectionRange(0, 9999); // for mobile devices
+      navigator.clipboard.writeText(password.value)
+        .then(() => {
+          // Show "Copied!" message
+          msg.style.display = 'inline';
+
+          // Hide it after 2 seconds
+          setTimeout(() => {
+            msg.style.display = 'none';
+          }, 2000);
+        })
+        .catch(err => {
+          console.error("Copy failed:", err);
+        });
+    });
+
+
+  </script>
+</body>
+
+</html>
