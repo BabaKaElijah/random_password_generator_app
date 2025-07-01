@@ -27,6 +27,40 @@ A simple and responsive password generator built with HTML, CSS, and JavaScript.
 - JavaScript
 
 ---
+## 🔐 Random Password Generator HTML Structure
+
+This HTML sets up the user interface for generating and copying random passwords.
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Password Generator</title>
+  <link rel="stylesheet" href="style.css"> <!-- Your CSS file -->
+</head>
+
+<body>
+  <div class="container">
+    <h1>Generate a <br><span>Random Password</span></h1>
+
+    <!-- Password display with copy button -->
+    <div class="display">
+      <input type="text" id="password" placeholder="Password" readonly>
+      <img src="images/copy.png" id="copy" alt="Copy Password">
+      <span id="copy-msg" style="margin-left: 10px; color: green; display: none;">Copied!</span>
+    </div>
+
+    <!-- Button to generate a new password -->
+    <button id="generate">
+      <img src="images/generate.png" alt="Generate Icon"> Generate Password
+    </button>
+  </div>
+<script>javascript code logic</script>
+</body>
+</html>
+```
 ## 🔐 Random Password Generator Logic (JavaScript)
 
 This JavaScript app generates strong random passwords using uppercase letters, lowercase letters, numbers, and symbols. It includes functionality to copy the generated password to the clipboard.
